@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
 class Controller extends GetxController{
-  var selectedIndex = 0.obs;
+  var selectedIndex = 1.obs;
 
-  increment(int index){
-    selectedIndex = index as RxInt;
-    print(" I am from controller $selectedIndex");
+  increment(RxInt index){
+    selectedIndex = index;
+    print("Let me see $selectedIndex");
+    update();
   }
 }

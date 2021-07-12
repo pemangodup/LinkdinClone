@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linkdin_clone/controllers/getx_controller.dart';
+import 'package:linkdin_clone/views/main_home.dart';
 
 class LinkdinClone extends StatefulWidget {
   const LinkdinClone({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class LinkdinClone extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _LinkdinClone extends State<LinkdinClone> {
   final Controller c = Get.put(Controller());
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -20,6 +22,7 @@ class _LinkdinClone extends State<LinkdinClone> {
       _selectedIndex = index;
     });
   }
+
   var _children = [
     MainBodyClone(),
     Center(child: Text('MyNetwork')),
@@ -34,16 +37,16 @@ class _LinkdinClone extends State<LinkdinClone> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
                 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Bill_Gates_2017_%28cropped%29.jpg'),
           ),
         ),
-        title: Text(
-          'search bar',
-          style: TextStyle(color: Colors.red),
-        ),
+        title: search_bar(),
+        actions: [
+          Icon(Icons.message, color: Colors.black,),
+        ],
       ),
       body: _children[_selectedIndex],
       //MainBodyClone()
@@ -71,9 +74,10 @@ class _LinkdinClone extends State<LinkdinClone> {
             label: 'Jobs',
           ),
         ],
-
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: c.selectedIndex.value,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
         selectedItemColor: Colors.black,
         unselectedLabelStyle: TextStyle(
           fontSize: 12.0,
@@ -86,196 +90,31 @@ class _LinkdinClone extends State<LinkdinClone> {
   }
 }
 
-class MainBodyClone extends StatelessWidget {
-
+class search_bar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // main column
-          children: [
-            // heading row
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // image in the heading
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://s.wsj.net/public/resources/images/SM-AB372_FAILUR_M_20180425143629.jpg'),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  // details of the user
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Flutter App Development"),
-                      Text("86,717 followers"),
-                      Row(
-                        children: [
-                          Text("1w."),
-                          Icon(
-                            Icons.circle,
-                            size: 12,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Spacer(),
-                  // gesture dot icons
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Icon(Icons.more_vert),
-                  ),
-                ],
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: Color(0xFFE8F0F5),
+      ),
+      height: 28.0,
+      width: double.infinity,
+      child: Row(
+        children: [
+          Icon(Icons.search, color: Colors.black,),
+          Text(
+            "Search",
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.black
             ),
-
-            // Text below heading
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 12, right: 10, left: 10, bottom: 10.0),
-              child: Text(
-                'After 4 interview attempts over the past 5 years, on my birthday this year i fot to celebrate starting a new job at Google. It has always been a ...',
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            // Container for image
-            Container(
-              width: double.infinity,
-              child: Image(
-                image: NetworkImage(
-                    'https://www.incimages.com/uploaded_files/image/1920x1080/getty_812897364_20001333181884361220_369378.jpg'),
-                fit: BoxFit.fill,
-                height: 220.0,
-              ),
-            ),
-
-            // two text below image
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Google I/O spotlight: Flutter in action at ByteDance',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    'medium.com. 8 min read',
-                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Divider(
-                color: Colors.grey,
-              ),
-            ),
-            // Tail of the main page
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.thumb_up,
-                        size: 17.0,
-                      ),
-                      Text(
-                        'Like',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.comment,
-                        size: 17.0,
-                      ),
-                      Text(
-                        'Like',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.arrow_forward,
-                        size: 17.0,
-                      ),
-                      Text(
-                        'Like',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.send,
-                        size: 17.0,
-                      ),
-                      Text(
-                        'Like',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              color: Color(0xFFF3F2EF),
-              thickness: 7.0,
-            ),
-          ],
-        );
-      },
+          ),
+          Spacer(),
+          Icon(Icons.qr_code_2_rounded, color: Colors.black,),
+        ],
+      ),
     );
   }
 }
+
