@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:linkdin_clone/controllers/getx_controller.dart';
+import 'package:linkdin_clone/model/getx_controller.dart';
 import 'package:linkdin_clone/views/main_home.dart';
+import 'package:linkdin_clone/widgets/widgets.dart';
+
 
 class LinkdinClone extends StatefulWidget {
   const LinkdinClone({Key? key}) : super(key: key);
@@ -40,12 +41,15 @@ class _LinkdinClone extends State<LinkdinClone> {
           padding: const EdgeInsets.all(12.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-                'https://upload.wikimedia.org/wikipedia/commons/a/a8/Bill_Gates_2017_%28cropped%29.jpg'),
+                'https://static.theprint.in/wp-content/uploads/2020/11/Jack-Ma.jpg'),
           ),
         ),
-        title: search_bar(),
+        title: Searchbar(),
         actions: [
-          Icon(Icons.message, color: Colors.black,),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Icon(Icons.message, color: Colors.black,),
+          ),
         ],
       ),
       body: _children[_selectedIndex],
@@ -90,31 +94,5 @@ class _LinkdinClone extends State<LinkdinClone> {
   }
 }
 
-class search_bar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: Color(0xFFE8F0F5),
-      ),
-      height: 28.0,
-      width: double.infinity,
-      child: Row(
-        children: [
-          Icon(Icons.search, color: Colors.black,),
-          Text(
-            "Search",
-            style: TextStyle(
-              fontSize: 15.0,
-              color: Colors.black
-            ),
-          ),
-          Spacer(),
-          Icon(Icons.qr_code_2_rounded, color: Colors.black,),
-        ],
-      ),
-    );
-  }
-}
+
 

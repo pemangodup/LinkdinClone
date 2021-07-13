@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkdin_clone/view_model/controller.dart';
 
 
 
@@ -7,7 +8,7 @@ class MainBodyClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: HomePageController.homePage.length,
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +23,8 @@ class MainBodyClone extends StatelessWidget {
                   // image in the heading
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        'https://s.wsj.net/public/resources/images/SM-AB372_FAILUR_M_20180425143629.jpg'),
+                      HomePageController.homePage[index].appBarImage.toString(),
+                    ),
                   ),
                   SizedBox(
                     width: 10,
@@ -31,11 +33,11 @@ class MainBodyClone extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Flutter App Development"),
-                      Text("86,717 followers"),
+                      Text(HomePageController.homePage[index].mainTitle.toString()),
+                      Text(HomePageController.homePage[index].noOfFollowers.toString()),
                       Row(
                         children: [
-                          Text("1w."),
+                          Text(HomePageController.homePage[index].createdTime.toString()),
                           Icon(
                             Icons.circle,
                             size: 12,
@@ -59,7 +61,7 @@ class MainBodyClone extends StatelessWidget {
               padding: const EdgeInsets.only(
                   top: 12, right: 10, left: 10, bottom: 10.0),
               child: Text(
-                'After 4 interview attempts over the past 5 years, on my birthday this year i fot to celebrate starting a new job at Google. It has always been a ...',
+                HomePageController.homePage[index].centerImageTitleDesc.toString(),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -69,7 +71,9 @@ class MainBodyClone extends StatelessWidget {
               width: double.infinity,
               child: Image(
                 image: NetworkImage(
-                    'https://www.incimages.com/uploaded_files/image/1920x1080/getty_812897364_20001333181884361220_369378.jpg'),
+                  HomePageController.homePage[index].centerImage.toString()
+                    //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_812897364_20001333181884361220_369378.jpg'
+        ),
                 fit: BoxFit.fill,
                 height: 220.0,
               ),
@@ -82,7 +86,7 @@ class MainBodyClone extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Google I/O spotlight: Flutter in action at ByteDance',
+                    HomePageController.homePage[index].centerImageTitle.toString() ,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
