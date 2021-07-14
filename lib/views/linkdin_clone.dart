@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:linkdin_clone/model/getx_controller.dart';
 import 'package:linkdin_clone/views/main_home.dart';
 import 'package:linkdin_clone/widgets/widgets.dart';
 
@@ -14,7 +12,6 @@ class LinkdinClone extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _LinkdinClone extends State<LinkdinClone> {
-  final Controller c = Get.put(Controller());
 
   int _selectedIndex = 0;
 
@@ -78,7 +75,7 @@ class _LinkdinClone extends State<LinkdinClone> {
             label: 'Jobs',
           ),
         ],
-        currentIndex: c.selectedIndex.value,
+        currentIndex: _selectedIndex,
         onTap: (index) {
           _onItemTapped(index);
         },

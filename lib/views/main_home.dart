@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:linkdin_clone/view_model/controller.dart';
+import 'package:linkdin_clone/model/home_page.dart';
 
 
 
@@ -8,7 +8,7 @@ class MainBodyClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: HomePageController.homePage.length,
+      itemCount: HomePage.homePage.length,
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +23,7 @@ class MainBodyClone extends StatelessWidget {
                   // image in the heading
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                      HomePageController.homePage[index].appBarImage.toString(),
+                      HomePage.homePage[index].appBarImage.toString(),
                     ),
                   ),
                   SizedBox(
@@ -33,11 +33,11 @@ class MainBodyClone extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(HomePageController.homePage[index].mainTitle.toString()),
-                      Text(HomePageController.homePage[index].noOfFollowers.toString()),
+                      Text(HomePage.homePage[index].mainTitle.toString()),
+                      Text(HomePage.homePage[index].noOfFollowers.toString()),
                       Row(
                         children: [
-                          Text(HomePageController.homePage[index].createdTime.toString()),
+                          Text(HomePage.homePage[index].createdTime.toString()),
                           Icon(
                             Icons.circle,
                             size: 12,
@@ -61,7 +61,7 @@ class MainBodyClone extends StatelessWidget {
               padding: const EdgeInsets.only(
                   top: 12, right: 10, left: 10, bottom: 10.0),
               child: Text(
-                HomePageController.homePage[index].centerImageTitleDesc.toString(),
+                HomePage.homePage[index].centerImageTitleDesc.toString(),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -71,7 +71,7 @@ class MainBodyClone extends StatelessWidget {
               width: double.infinity,
               child: Image(
                 image: NetworkImage(
-                  HomePageController.homePage[index].centerImage.toString()
+                  HomePage.homePage[index].centerImage.toString()
                     //'https://www.incimages.com/uploaded_files/image/1920x1080/getty_812897364_20001333181884361220_369378.jpg'
         ),
                 fit: BoxFit.fill,
@@ -86,7 +86,7 @@ class MainBodyClone extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    HomePageController.homePage[index].centerImageTitle.toString() ,
+                    HomePage.homePage[index].centerImageTitle.toString() ,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
